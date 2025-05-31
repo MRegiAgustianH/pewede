@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 21, 2025 at 07:47 PM
+-- Generation Time: May 31, 2025 at 03:09 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -24,6 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `about`
+--
+
+CREATE TABLE `about` (
+  `id` int NOT NULL,
+  `deskripsi` text NOT NULL
+);
+
+--
+-- Dumping data for table `about`
+--
+
+INSERT INTO `about` (`id`, `deskripsi`) VALUES
+(1, 'Agoda, platform perjalanan digital, membantu semua melihat dunia lebih murah dengan penawaran terbaiknya di jaringan global 4,5 juta hotel dan akomodasi liburan lainnya di seluruh dunia, serta penerbangan, aktivitas, dan lainnya. Agoda.com dan aplikasi seluler Agoda tersedia dalam 39 bahasa dan didukung oleh layanan pelanggan 24 jam. Berkantor pusat di Singapura, Agoda adalah bagian dari Booking Holdings (Nasdaq: BKNG) dan memiliki lebih dari 7.000 staf di 27 pasar, berdedikasi untuk memaksimalkan manfaat teknologi terbaik di kelasnya untuk membuat perjalanan Anda lebih mudah.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `artikel`
 --
 
@@ -34,7 +52,7 @@ CREATE TABLE `artikel` (
   `penulis` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `posting` enum('tidak','ya') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `artikel`
@@ -57,21 +75,20 @@ CREATE TABLE `produk` (
   `harga` int NOT NULL,
   `ukuran` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id`, `nama`, `harga`, `ukuran`, `image`) VALUES
-(5, 'sandal', 2500, 'm', '682e1e69c1ebc.jpg'),
-(6, 'sandal', 2500, 'm', '682e1e8dd0449.jpg'),
-(7, 'sandal', 2500, 'm', '682e1ef773d06.jpg'),
-(8, 'sandal', 200000, 'm', '682e2046e40bc.jpg'),
-(9, 'sandal', 200000, 'm', '682e206711a2b.jpg'),
-(10, 'sandal', 50000, 'm', '682e207997b5c.jpg'),
 (11, 'samba', 200000, '39', '682e27a44af02.jpg'),
-(12, 'JAKET', 150000, 'm', '682e2988ef4d5.jpg');
+(12, 'JAKET', 150000, 'm', '682e2988ef4d5.jpg'),
+(15, 'sandal', 200000, '39', '68396089c83a3.jpg'),
+(25, 'sandal', 200000, '39', '683b0db2d678a.jpg'),
+(26, 'sandal', 200000, 's', '683b111c2232c.jpg'),
+(28, 'sandal', 150000, '39', '683b131b76555.jpg'),
+(29, 'SHOES', 150000, '39', '683b1340a4103.jpg');
 
 -- --------------------------------------------------------
 
@@ -84,21 +101,27 @@ CREATE TABLE `user` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `confirm_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `confirm_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `role` tinyint NOT NULL DEFAULT '1'
+);
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `confirm_password`) VALUES
-(1, 'mita', 'mita@gmail.com', 'mita123', 'mita123\r\n'),
-(5, 'mitaa', 'mitaa@gmail.com', 'mita123', 'mita123'),
-(8, 'regi', 'regi@agus.com', 'regi', 'regi');
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `confirm_password`, `role`) VALUES
+(1, 'mita', 'mita@gmail.com', 'mita123', 'mita123\r\n', 1),
+(9, 'admin', 'admin@admin.com', 'admin123', 'admin123', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `about`
+--
+ALTER TABLE `about`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `artikel`
@@ -123,6 +146,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `about`
+--
+ALTER TABLE `about`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
@@ -132,13 +161,13 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
