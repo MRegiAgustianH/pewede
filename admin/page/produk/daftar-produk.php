@@ -3,7 +3,9 @@
 <div class="row">
     <div class="col">
         <div class="mb-2">
-            <a href="page/produk/tambah-produk.php" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Produk</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i>
+                Tambah Produk
+            </button>
         </div>
         <table class="table table-hover">
             <thead>
@@ -18,7 +20,7 @@
             </thead>
             <tbody>
                 <?php 
-                    require_once('../model/produk.php');
+                    require_once("../model/produk.php");
                     $produk = new Produk();
                     $produkData = $produk->getAll();
                     $nomor = 1;
@@ -33,7 +35,7 @@
     
                         <td>
                             <?php 
-                            $baseUrl = '/tpwdmita/admin/page/img/'; 
+                            $baseUrl = '/tpwdmita/admin/page/produk/images/'; 
                             $imageUrl = $baseUrl . $row['image'];
                             $fullPath = $_SERVER['DOCUMENT_ROOT'] . $imageUrl;
                             
@@ -67,25 +69,61 @@
     </div>
 </div>
 
-<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">FORM TAMBAH PRODUK</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nama">Nama Produk</label>
+                <input type="text" class="form-control" id="nama" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="harga">Harga Produk</label>
+                <input type="number" class="form-control" id="harga" name="harga" required>
+            </div>
+            <div class="form-group">
+                <label for="ukuran">Ukuran</label>
+                <input type="text" class="form-control" id="ukuran" name="ukuran" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Gambar Produk</label>
+                <input type="file" class="form-control" id="image" name="image" style="border:none;" required>
+            </div>
+            <button type="submit" class="btn btn-primary" name="tambah">Simpan</button>
+        </form>
       </div>
     </div>
   </div>
 </div>
+
+<?php
+if(isset($_POST['tambah'])) {
+    $imageName = $_FILES['image']['name'];
+    $path = "page/produk/images/" . $imageName;
+    move_uploaded_file($_FILES['image']['tmp_name'], $path);
+    
+    $datas = [
+        'nama' => $_POST['nama'],
+        'harga' => $_POST['harga'],
+        'ukuran' => $_POST['ukuran'],
+        'image' => $imageName
+    ];
+    
+    if($produk->tambahProduk($datas)) {
+        echo "<script>window.location.href='dashboard.php?module=produk&page=daftar-produk';</script>";
+    } else {
+        echo "<script>window.location.href='dashboard.php?module=produk&page=daftar-produk';</script>";
+    }
+}
+
+?>
 
 
 

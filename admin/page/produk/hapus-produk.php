@@ -22,7 +22,7 @@ if (!$produk) {
     header("Location: ../../dashboard.php?module=produk&page=daftar-produk");
     exit();
 }
-$imagePath = $_SERVER['DOCUMENT_ROOT'] . '/tpwdmita/admin/page/img/' . $produk['image'];
+$imagePath = './images/' . $produk['image'];
 if (!empty($produk['image']) && file_exists($imagePath)) {
     if (!unlink($imagePath)) {
         $_SESSION['error'] = "Gagal menghapus file gambar!";

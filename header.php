@@ -43,8 +43,8 @@
                         <img src="img/profile.png" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; opacity:0.5;">
                         <span>Profile</span>
                       </a>
-                      <a href="" class="menu-button">
-                      Pesanan
+                      <a href="favorite.php" class="menu-button">
+                      Favorite
                       </a>
                       <a href="admin/logout.php" class="menu-button"  style="background-color:#EF233C;">
                       Logout

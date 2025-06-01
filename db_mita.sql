@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 31, 2025 at 03:09 PM
+-- Generation Time: Jun 01, 2025 at 02:12 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `about` (
   `id` int NOT NULL,
   `deskripsi` text NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `about`
@@ -52,7 +52,7 @@ CREATE TABLE `artikel` (
   `penulis` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `posting` enum('tidak','ya') NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `artikel`
@@ -66,6 +66,30 @@ INSERT INTO `artikel` (`id`, `tanggal`, `judul`, `penulis`, `deskripsi`, `postin
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fav_produk`
+--
+
+CREATE TABLE `fav_produk` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `produk_id` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fav_produk`
+--
+
+INSERT INTO `fav_produk` (`id`, `user_id`, `produk_id`, `created_at`) VALUES
+(3, 1, 48, '2025-06-01 11:54:29'),
+(4, 1, 49, '2025-06-01 11:54:44'),
+(6, 1, 55, '2025-06-01 11:55:46'),
+(8, 1, 46, '2025-06-01 12:14:16'),
+(11, 1, 45, '2025-06-01 14:07:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `produk`
 --
 
@@ -75,20 +99,22 @@ CREATE TABLE `produk` (
   `harga` int NOT NULL,
   `ukuran` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id`, `nama`, `harga`, `ukuran`, `image`) VALUES
-(11, 'samba', 200000, '39', '682e27a44af02.jpg'),
-(12, 'JAKET', 150000, 'm', '682e2988ef4d5.jpg'),
-(15, 'sandal', 200000, '39', '68396089c83a3.jpg'),
-(25, 'sandal', 200000, '39', '683b0db2d678a.jpg'),
-(26, 'sandal', 200000, 's', '683b111c2232c.jpg'),
-(28, 'sandal', 150000, '39', '683b131b76555.jpg'),
-(29, 'SHOES', 150000, '39', '683b1340a4103.jpg');
+(45, 'rok', 200000, 'm', 'rok.jpg'),
+(46, 'SAMBA', 200000, '39', 'sambapink.jpg'),
+(47, 'sandal', 150000, '39', 'sandal.jpg'),
+(48, 'sandal', 50000, '39', 'sendal1.jpg'),
+(49, 'sandal', 150000, '39', 'sendal2.jpg'),
+(50, 'SEPATU', 1700000, '40', 'sepatu1.jpg'),
+(51, 'SEPATU', 1000000, '42', 'sepatu2.jpg'),
+(55, 'JAKET', 500000, 'M', 'jaket.jpg'),
+(56, 'JAKET', 1500000, 'XL', 'jaketpink.jpg');
 
 -- --------------------------------------------------------
 
@@ -101,9 +127,9 @@ CREATE TABLE `user` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `confirm_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `confirm_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `role` tinyint NOT NULL DEFAULT '1'
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
@@ -111,7 +137,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `confirm_password`, `role`) VALUES
 (1, 'mita', 'mita@gmail.com', 'mita123', 'mita123\r\n', 1),
-(9, 'admin', 'admin@admin.com', 'admin123', 'admin123', 0);
+(9, 'admin', 'admin@admin.com', 'admin123', 'admin123', 0),
+(10, 'maman', 'maman@gmail.com', 'maman123', 'maman123', 1);
 
 --
 -- Indexes for dumped tables
@@ -128,6 +155,14 @@ ALTER TABLE `about`
 --
 ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fav_produk`
+--
+ALTER TABLE `fav_produk`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `produk_id` (`produk_id`);
 
 --
 -- Indexes for table `produk`
@@ -158,16 +193,33 @@ ALTER TABLE `artikel`
   MODIFY `id` mediumint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `fav_produk`
+--
+ALTER TABLE `fav_produk`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `fav_produk`
+--
+ALTER TABLE `fav_produk`
+  ADD CONSTRAINT `fav_produk_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fav_produk_ibfk_2` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -89,7 +89,7 @@
                         echo "<a href='detail-produk.php?id=".$row['id']."'>";  
                         echo    "<div class='item'>";
                         echo       "<div class='picture'>";
-                        echo           "<img src='admin/page/img/".$row['image']."' alt='".htmlspecialchars($row['nama'])."'>";
+                        echo           "<img src='admin/page/produk/images/".$row['image']."' alt='".htmlspecialchars($row['nama'])."'>";
                         echo       "</div>";
                         echo       "<div class='description'>";
                         echo           "<h3>".htmlspecialchars($row['nama'])."</h3>";
