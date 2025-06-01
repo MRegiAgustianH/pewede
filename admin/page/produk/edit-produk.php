@@ -12,7 +12,8 @@ if(isset($_POST['update'])) {
     $data = [
         'nama' => $_POST['nama'],
         'harga' => $_POST['harga'],
-        'ukuran' => $_POST['ukuran']
+        'ukuran' => $_POST['ukuran'],
+        'deskripsi' => $_POST['deskripsi']
     ];
     
     if(!empty($_FILES['image']['name'])) {
@@ -58,7 +59,11 @@ if(isset($_POST['update'])) {
                 <label class="form-label">Ukuran</label>
                 <input type="text" name="ukuran" class="form-control" value="<?= $produk['ukuran'] ?>" required>
             </div>
-            
+            <div class="mb-3">
+                <label class="form-label">Deskripsi</label>
+                <!-- <input type="text" name="deskripsi" class="form-control" value="<?= $produk['deskripsi'] ?>" required> -->
+                <textarea name="deskripsi" id="deskripsi" class="form-control" required><?= $produk['deskripsi'] ?></textarea>
+            </div>
             <div class="mb-3">
                 <label class="form-label">Gambar Saat Ini:</label><br>
                 <img src="images/<?= $produk['image'] ?>" width="100" class="mb-2">

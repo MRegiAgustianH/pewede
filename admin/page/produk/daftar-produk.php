@@ -13,7 +13,8 @@
                     <th>NO</th>
                     <th>Nama</th>
                     <th>Harga</th>
-                    <th>Ukuran</th>           
+                    <th>Ukuran</th>   
+                    <th>Deskripsi</th>        
                     <th>Gambar</th>
                     <th class="text-center">Aksi</th>
                 </tr>
@@ -32,7 +33,7 @@
                         <td><?= htmlspecialchars($row['nama']); ?></td>
                         <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
                         <td><?= htmlspecialchars($row['ukuran']); ?></td>
-    
+                        <td><?= htmlspecialchars(substr($row['deskripsi'], 0, 50)) . (strlen($row['deskripsi']) > 50 ? '...' : ''); ?></td>
                         <td>
                             <?php 
                             $baseUrl = '/tpwdmita/admin/page/produk/images/'; 
@@ -93,6 +94,11 @@
                 <input type="text" class="form-control" id="ukuran" name="ukuran" required>
             </div>
             <div class="form-group">
+                <label for="deskripsi">Deskripsi</label>
+                <!-- <input type="text" class="form-control" id="deskripsi" name="deskripsi" required> -->
+                <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
                 <label for="image">Gambar Produk</label>
                 <input type="file" class="form-control" id="image" name="image" style="border:none;" required>
             </div>
@@ -113,6 +119,7 @@ if(isset($_POST['tambah'])) {
         'nama' => $_POST['nama'],
         'harga' => $_POST['harga'],
         'ukuran' => $_POST['ukuran'],
+        'deskripsi' =>$_POST['deskripsi'],
         'image' => $imageName
     ];
     

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 01, 2025 at 02:12 PM
+-- Generation Time: Jun 01, 2025 at 04:16 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -84,8 +84,7 @@ INSERT INTO `fav_produk` (`id`, `user_id`, `produk_id`, `created_at`) VALUES
 (3, 1, 48, '2025-06-01 11:54:29'),
 (4, 1, 49, '2025-06-01 11:54:44'),
 (6, 1, 55, '2025-06-01 11:55:46'),
-(8, 1, 46, '2025-06-01 12:14:16'),
-(11, 1, 45, '2025-06-01 14:07:31');
+(8, 1, 46, '2025-06-01 12:14:16');
 
 -- --------------------------------------------------------
 
@@ -98,6 +97,7 @@ CREATE TABLE `produk` (
   `nama` varchar(255) NOT NULL,
   `harga` int NOT NULL,
   `ukuran` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -105,16 +105,16 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `nama`, `harga`, `ukuran`, `image`) VALUES
-(45, 'rok', 200000, 'm', 'rok.jpg'),
-(46, 'SAMBA', 200000, '39', 'sambapink.jpg'),
-(47, 'sandal', 150000, '39', 'sandal.jpg'),
-(48, 'sandal', 50000, '39', 'sendal1.jpg'),
-(49, 'sandal', 150000, '39', 'sendal2.jpg'),
-(50, 'SEPATU', 1700000, '40', 'sepatu1.jpg'),
-(51, 'SEPATU', 1000000, '42', 'sepatu2.jpg'),
-(55, 'JAKET', 500000, 'M', 'jaket.jpg'),
-(56, 'JAKET', 1500000, 'XL', 'jaketpink.jpg');
+INSERT INTO `produk` (`id`, `nama`, `harga`, `ukuran`, `deskripsi`, `image`) VALUES
+(45, 'rok', 200000, 'm', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'rok.jpg'),
+(46, 'SAMBA', 200000, '39', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sambapink.jpg'),
+(47, 'sandal', 150000, '39', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sandal.jpg'),
+(48, 'sandal', 50000, '39', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal1.jpg'),
+(49, 'sandal', 150000, '39', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal2.jpg'),
+(50, 'SEPATU', 1700000, '40', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu1.jpg'),
+(51, 'SEPATU', 1000000, '42', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu2.jpg'),
+(55, 'JAKET', 500000, 'M', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaket.jpg'),
+(56, 'JAKET', 1500000, 'XL', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaketpink.jpg');
 
 -- --------------------------------------------------------
 
@@ -202,7 +202,7 @@ ALTER TABLE `fav_produk`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `user`

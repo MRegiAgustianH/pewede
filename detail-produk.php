@@ -42,6 +42,7 @@ if(isset($_SESSION['id'])) {
             <h1><?php echo htmlspecialchars($produk['nama']); ?></h1>
             <hr style="width:100%;text-align:left;margin-left:0">
             <p class="harga">Rp <?php echo number_format($produk['harga'], 0, ',', '.'); ?></p>
+            <p><?= $produk['deskripsi']?></p>
             <button class="cart-btn">Tambahkan Keranjang</button>
             <button class="favorite-btn <?php echo $is_favorite ? 'active' : ''; ?>" 
                     onclick="<?php echo $is_favorite ? 'removeFromFavorites' : 'addToFavorites'; ?>(<?php echo $produk['id']; ?>)">

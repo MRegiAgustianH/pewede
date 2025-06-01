@@ -25,3 +25,4 @@ if($conn->affected_rows > 0) {
 } else {
     echo json_encode(['success' => false, 'message' => 'Produk tidak ditemukan di favorit']);
 }
+
