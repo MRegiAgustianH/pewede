@@ -41,10 +41,10 @@ $conn = $koneksi->getConnection();
                                 echo "</a>";
                             }
                         } else {
-                            echo "<p class='text-center'>Belum ada produk favorit</p>";
+                            echo "<p class='notif' style='text-align:center; font-size:25px;'>Belum ada produk favorit</p>";
                         }
                     } else {
-                        echo "<p class='text-center'>Silakan login untuk melihat produk favorit</p>";
+                        echo "<p class='notif' style='text-align:center; font-size:25px;'>Silakan login untuk melihat produk favorit</p>";
                     }
                     ?>
                 </div>
