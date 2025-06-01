@@ -51,5 +51,9 @@ $conn = $koneksi->getConnection();
             </div>
         </div>
     </main>
+    <?php include('footer.php')?>
+    <button class="back-to-top" title="Go to top">↑</button>
+    <script src="script.js"></script>
+
 </body>
 </html>
