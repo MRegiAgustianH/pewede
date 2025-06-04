@@ -13,6 +13,8 @@ if(isset($_POST['update'])) {
         'nama' => $_POST['nama'],
         'harga' => $_POST['harga'],
         'ukuran' => $_POST['ukuran'],
+        'type' => $_POST['type'],
+        'kategori' => $_POST['kategori'],
         'deskripsi' => $_POST['deskripsi']
     ];
     
@@ -58,6 +60,14 @@ if(isset($_POST['update'])) {
             <div class="mb-3">
                 <label class="form-label">Ukuran</label>
                 <input type="text" name="ukuran" class="form-control" value="<?= $produk['ukuran'] ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Type Produk</label>
+                <input type="text" name="type" class="form-control" value="<?= $produk['type'] ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Kategori</label>
+                <input type="text" name="kategori" class="form-control" value="<?= $produk['kategori'] ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Deskripsi</label>

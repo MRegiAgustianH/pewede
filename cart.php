@@ -15,7 +15,7 @@ $conn = $koneksi->getConnection();
 <body>
     <?php include ('header.php') ?>
     <main>
-        <h1>PRODUK FAVORITE ANDA</h1>
+        <h1>KERANJANG ANDA</h1>
         <div class="produk">
             <div class="produk-container">
                 <div class="produk-list">
@@ -24,7 +24,7 @@ $conn = $koneksi->getConnection();
                         $user_id = $_SESSION['id'];
                         
                         $query = "SELECT p.* FROM produk p
-                                JOIN fav_produk fp ON p.id = fp.produk_id
+                                JOIN cart fp ON p.id = fp.produk_id
                                 WHERE fp.user_id = $user_id";
                         $result = mysqli_query($conn, $query);
                         if(mysqli_num_rows($result) > 0) {
@@ -42,10 +42,10 @@ $conn = $koneksi->getConnection();
                                 echo "</a>";
                             }
                         } else {
-                            echo "<p class='notif' style='text-align:center; font-size:25px;'>Belum ada produk favorit</p>";
+                            echo "<p class='notif' style='text-align:center; font-size:25px;'>Belum ada produk di keranjang</p>";
                         }
                     } else {
-                        echo "<p class='notif' style='text-align:center; font-size:25px;'>Silakan login untuk melihat produk favorit</p>";
+                        echo "<p class='notif' style='text-align:center; font-size:25px;'>Silakan login untuk melihat keranjang anda</p>";
                     }
                     ?>
                 </div>

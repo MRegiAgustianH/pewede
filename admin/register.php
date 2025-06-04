@@ -63,7 +63,8 @@
         align-items: center;
         height: 100vh;
         background: #f79ced;
-        background: linear-gradient(134deg, rgba(247, 156, 237, 1) 0%, rgba(237, 237, 237, 1) 100%);
+        /* background: linear-gradient(134deg, rgba(247, 156, 237, 1) 0%, rgba(237, 237, 237, 1) 100%); */
+        background-image: url(../img/bg.webp);
     }
     * {
         margin: 0;

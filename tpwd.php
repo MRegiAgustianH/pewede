@@ -26,10 +26,10 @@
     <main>
         <h1>BEST OF ADIDAS</h1>
         <section>
-            <div><a href="aboutshoes1.html"><img src="img/sandal.jpg" alt=""></a></div>
-            <div><a href="aboutshoes1.html"><img src="img/jaketpink.jpg" alt=""></a></div>
-            <div><a href="aboutshoes1.html"><img src="img/rok.jpg" alt=""></a></div>
-            <div><a href="aboutshoes1.html"><img src="img/sambapink.jpg" alt=""></a></div>
+            <div><a href="#"><img src="img/sandal.jpg" alt=""></a></div>
+            <div><a href="#"><img src="img/jaketpink.jpg" alt=""></a></div>
+            <div><a href="#"><img src="img/rok.jpg" alt=""></a></div>
+            <div><a href="#"><img src="img/sambapink.jpg" alt=""></a></div>
         </section>
         <div class="produk">
             <div class="produk-container">

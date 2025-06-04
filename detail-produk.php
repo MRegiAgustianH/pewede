@@ -20,6 +20,13 @@ if(isset($_SESSION['id'])) {
     $is_favorite = $check->num_rows > 0;
 }
 
+$in_cart = false;
+if(isset($_SESSION['id'])) {
+    $user_id = $_SESSION['id'];
+    $product_id = $produk['id'];
+    $check = $conn->query("SELECT * FROM cart WHERE user_id = $user_id AND produk_id = $product_id");
+    $in_cart = $check->num_rows > 0;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +50,11 @@ if(isset($_SESSION['id'])) {
             <hr style="width:100%;text-align:left;margin-left:0">
             <p class="harga">Rp <?php echo number_format($produk['harga'], 0, ',', '.'); ?></p>
             <p><?= $produk['deskripsi']?></p>
-            <button class="cart-btn">Tambahkan Keranjang</button>
+            <!-- <button class="cart-btn">Tambahkan Keranjang</button> -->
+             <button class="cart-btn <?php echo $in_cart ? 'active' : ''; ?>" 
+                    onclick="<?php echo $in_cart ? 'removeFromCart' : 'addToCart'; ?>(<?php echo $produk['id']; ?>)">
+                <span><?php echo $in_cart ? 'Hapus dari Keranjang' : 'Tambahkan Keranjang'; ?></span>
+            </button>
             <button class="favorite-btn <?php echo $is_favorite ? 'active' : ''; ?>" 
                     onclick="<?php echo $is_favorite ? 'removeFromFavorites' : 'addToFavorites'; ?>(<?php echo $produk['id']; ?>)">
                 <img src="img/favorite.png" alt="">
@@ -162,6 +173,46 @@ function removeFromFavorites(productId) {
             if(data.success) {
                 alert('Produk dihapus dari favorit');
                 location.reload(); 
+            } else {
+                alert('Gagal: ' + data.message);
+            }
+        });
+    }
+}
+
+function addToCart(productId) {
+    fetch('admin/page/produk/cart-produk.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'product_id=' + productId
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            alert('Produk berhasil ditambahkan ke keranjang!');
+            location.reload();
+        } else {
+            alert('Gagal: ' + data.message);
+        }
+    });
+}
+
+function removeFromCart(productId) {
+    if(confirm('Yakin ingin menghapus dari keranjang?')) {
+        fetch('admin/page/produk/hapus-cart-produk.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'product_id=' + productId
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                alert('Produk dihapus dari keranjang');
+                location.reload();
             } else {
                 alert('Gagal: ' + data.message);
             }

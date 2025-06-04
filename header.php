@@ -5,10 +5,10 @@
             <ul>
                 <li>
                     <a href="tpwd.php">Beranda</a>
-                    <a href="">Pesawat + Hotel</a>
-                    <a href="">Akomodasi</a>
-                    <a href="">Transportasi</a>
                     <a href="about-page.php">About</a>
+                    <a href="pria-page.php">Produk Pria</a>
+                    <a href="wanita-page.php">Produk Wanita</a>
+                    <a href="anak-page.php">Produk Anak</a>
                 </li>
             </ul>
         </div>
@@ -20,14 +20,14 @@
             <?php
             if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 1) {
                 echo '<button style="border:none;">
-                        <a href="../tpwdmita/admin/login.php" style="font-weight: 500; font-size:clamp(5px,20px,2rem); color: rgb(44, 119, 231);">Masuk</a>
+                        <a href="admin/login.php" style="font-weight: 500; font-size:clamp(5px,20px,2rem); color: rgb(44, 119, 231);">Masuk</a>
                     </button>
                     <button>
-                        <a href="../tpwdmita/admin/register.php" style="font-weight: 500; font-size:clamp(5px,20px,2rem); color: rgb(44, 119, 231);">Daftar</a>
+                        <a href="admin/register.php" style="font-weight: 500; font-size:clamp(5px,20px,2rem); color: rgb(44, 119, 231);">Daftar</a>
                     </button>';
             }
             ?>
-            <a href="">
+            <a href="cart.php">
                 <img src="img/cart.png" alt="">
             </a>
             <a href="#" class="menu-toggle">
@@ -50,8 +50,8 @@
                       Logout
                       </a>';
             } else {
-                echo '<a href="../tpwdmita/admin/login.php" class="menu-button">Masuk</a>
-                      <a href="../tpwdmita/admin/register.php" class="menu-button">Daftar</a>';
+                echo '<a href="admin/login.php" class="menu-button">Masuk</a>
+                      <a href="admin/register.php" class="menu-button">Daftar</a>';
             }
             ?>
         </div>

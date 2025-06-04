@@ -13,7 +13,9 @@
                     <th>NO</th>
                     <th>Nama</th>
                     <th>Harga</th>
-                    <th>Ukuran</th>   
+                    <th>Ukuran</th>
+                    <th>Type</th>
+                    <th>Kategori</th>   
                     <th>Deskripsi</th>        
                     <th>Gambar</th>
                     <th class="text-center">Aksi</th>
@@ -33,7 +35,9 @@
                         <td><?= htmlspecialchars($row['nama']); ?></td>
                         <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
                         <td><?= htmlspecialchars($row['ukuran']); ?></td>
-                        <td><?= htmlspecialchars(substr($row['deskripsi'], 0, 50)) . (strlen($row['deskripsi']) > 50 ? '...' : ''); ?></td>
+                        <td><?= htmlspecialchars($row['type']); ?></td>
+                        <td><?= htmlspecialchars($row['kategori']); ?></td>
+                        <td><?= htmlspecialchars(substr($row['deskripsi'], 0, 10)) . (strlen($row['deskripsi']) > 10 ? '...' : ''); ?></td>
                         <td>
                             <?php 
                             $baseUrl = '/tpwdmita/admin/page/produk/images/'; 
@@ -94,6 +98,15 @@
                 <input type="text" class="form-control" id="ukuran" name="ukuran" required>
             </div>
             <div class="form-group">
+                <label for="type">Type Produk</label>
+                <input type="text" class="form-control" id="type" name="type" required>
+            </div>
+            <div class="form-group">
+                <label for="kategori">Kategori</label>
+                <input type="text" class="form-control" id="kategori" name="kategori" required>
+            </div>
+
+            <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
                 <!-- <input type="text" class="form-control" id="deskripsi" name="deskripsi" required> -->
                 <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
@@ -119,6 +132,8 @@ if(isset($_POST['tambah'])) {
         'nama' => $_POST['nama'],
         'harga' => $_POST['harga'],
         'ukuran' => $_POST['ukuran'],
+        'type' => $_POST['type'],
+        'kategori' => $_POST['kategori'],
         'deskripsi' =>$_POST['deskripsi'],
         'image' => $imageName
     ];

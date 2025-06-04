@@ -1,15 +1,8 @@
 <?php
 require_once('../model/produk.php');
-require_once('../model/Artikel.php');
-
 $produk = new Produk();
 $produkData = $produk->getAll();
 $totalProduk = count($produkData);
-
-$artikel = new Artikel();
-$artikelData = $artikel->getAll();
-$totalArtikel = count($artikelData);
-
 ?>
  
  <h2 class="mt-4 mb-4"><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
@@ -28,7 +21,7 @@ $totalArtikel = count($artikelData);
                       <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                           <div class="text-xs font-weight-bold text-white mb-1">Artikel</div>
-                          <div class="h5 mb-0 font-weight-bold text-white"><?= $totalArtikel ?></div>
+                          <div class="h5 mb-0 font-weight-bold text-white">0</div>
                           <div class="h5 mb-0 font-weight-bold text-white"></div>
                       </div>
                       <div class="col-auto">
