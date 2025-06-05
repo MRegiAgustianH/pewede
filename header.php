@@ -1,3 +1,8 @@
+<?php
+require_once 'model/user.php';
+$user = new User();
+$userData = $user->getAll();
+?>
 <header>
     <nav>
         <div class="logo"><a href="tpwd.php"><img src="img/agodalogo.png" alt=""></a></div>
@@ -41,7 +46,7 @@
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 1) {
                 echo '<a href="" class="profile-item">
                         <img src="img/profile.png" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; opacity:0.5;">
-                        <span>Profile</span>
+                        <span>' . $_SESSION['username'] . '</span>
                       </a>
                       <a href="favorite.php" class="menu-button">
                       Favorite
@@ -61,12 +66,12 @@
     document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.querySelector('.menu-toggle');
         const hamburgerMenu = document.getElementById('hamburgerMenu');
-        
+
         menuToggle.addEventListener('click', function(e) {
             e.preventDefault();
             hamburgerMenu.classList.toggle('active');
         });
-        
+
         document.addEventListener('click', function(e) {
             if (!hamburgerMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
                 hamburgerMenu.classList.remove('active');

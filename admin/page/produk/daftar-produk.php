@@ -15,20 +15,20 @@
                     <th>Harga</th>
                     <th>Ukuran</th>
                     <th>Type</th>
-                    <th>Kategori</th>   
-                    <th>Deskripsi</th>        
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
                     <th>Gambar</th>
                     <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                    require_once("../model/produk.php");
-                    $produk = new Produk();
-                    $produkData = $produk->getAll();
-                    $nomor = 1;
+                <?php
+                require_once("../model/produk.php");
+                $produk = new Produk();
+                $produkData = $produk->getAll();
+                $nomor = 1;
 
-                    foreach($produkData as $row){
+                foreach ($produkData as $row) {
                 ?>
                     <tr>
                         <td><?= $nomor++; ?></td>
@@ -39,15 +39,15 @@
                         <td><?= htmlspecialchars($row['kategori']); ?></td>
                         <td><?= htmlspecialchars(substr($row['deskripsi'], 0, 10)) . (strlen($row['deskripsi']) > 10 ? '...' : ''); ?></td>
                         <td>
-                            <?php 
-                            $baseUrl = '/tpwdmita/admin/page/produk/images/'; 
+                            <?php
+                            $baseUrl = '/tpwdmita/admin/page/produk/images/';
                             $imageUrl = $baseUrl . $row['image'];
                             $fullPath = $_SERVER['DOCUMENT_ROOT'] . $imageUrl;
-                            
-                            if(!empty($row['image']) && file_exists($fullPath)): 
+
+                            if (!empty($row['image']) || file_exists($fullPath)):
                             ?>
-                                <img src="<?= $imageUrl ?>" 
-                                    alt="<?= htmlspecialchars($row['nama']) ?>" 
+                                <img src="<?= $imageUrl ?>"
+                                    alt="<?= htmlspecialchars($row['nama']) ?>"
                                     style="max-width: 100px; max-height: 100px;"
                                     onerror="this.onerror=null;this.src='/path/to/default-image.jpg'">
                             <?php else: ?>
@@ -66,8 +66,8 @@
                             </a>
                         </td>
                     </tr>
-                <?php    
-                    }
+                <?php
+                }
                 ?>
             </tbody>
         </table>
@@ -75,70 +75,70 @@
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">FORM TAMBAH PRODUK</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="nama">Nama Produk</label>
-                <input type="text" class="form-control" id="nama" name="nama" required>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">FORM TAMBAH PRODUK</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="harga">Harga Produk</label>
-                <input type="number" class="form-control" id="harga" name="harga" required>
-            </div>
-            <div class="form-group">
-                <label for="ukuran">Ukuran</label>
-                <input type="text" class="form-control" id="ukuran" name="ukuran" required>
-            </div>
-            <div class="form-group">
-                <label for="type">Type Produk</label>
-                <input type="text" class="form-control" id="type" name="type" required>
-            </div>
-            <div class="form-group">
-                <label for="kategori">Kategori</label>
-                <input type="text" class="form-control" id="kategori" name="kategori" required>
-            </div>
+            <div class="modal-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nama">Nama Produk</label>
+                        <input type="text" class="form-control" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">Harga Produk</label>
+                        <input type="number" class="form-control" id="harga" name="harga" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ukuran">Ukuran</label>
+                        <input type="text" class="form-control" id="ukuran" name="ukuran" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type Produk</label>
+                        <input type="text" class="form-control" id="type" name="type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <input type="text" class="form-control" id="kategori" name="kategori" required>
+                    </div>
 
-            <div class="form-group">
-                <label for="deskripsi">Deskripsi</label>
-                <!-- <input type="text" class="form-control" id="deskripsi" name="deskripsi" required> -->
-                <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <!-- <input type="text" class="form-control" id="deskripsi" name="deskripsi" required> -->
+                        <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Gambar Produk</label>
+                        <input type="file" class="form-control" id="image" name="image" style="border:none;" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="tambah">Simpan</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="image">Gambar Produk</label>
-                <input type="file" class="form-control" id="image" name="image" style="border:none;" required>
-            </div>
-            <button type="submit" class="btn btn-primary" name="tambah">Simpan</button>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <?php
-if(isset($_POST['tambah'])) {
+if (isset($_POST['tambah'])) {
     $imageName = $_FILES['image']['name'];
     $path = "page/produk/images/" . $imageName;
     move_uploaded_file($_FILES['image']['tmp_name'], $path);
-    
+
     $datas = [
         'nama' => $_POST['nama'],
         'harga' => $_POST['harga'],
         'ukuran' => $_POST['ukuran'],
         'type' => $_POST['type'],
         'kategori' => $_POST['kategori'],
-        'deskripsi' =>$_POST['deskripsi'],
+        'deskripsi' => $_POST['deskripsi'],
         'image' => $imageName
     ];
-    
-    if($produk->tambahProduk($datas)) {
+
+    if ($produk->tambahProduk($datas)) {
         echo "<script>window.location.href='dashboard.php?module=produk&page=daftar-produk';</script>";
     } else {
         echo "<script>window.location.href='dashboard.php?module=produk&page=daftar-produk';</script>";
@@ -146,10 +146,3 @@ if(isset($_POST['tambah'])) {
 }
 
 ?>
-
-
-
-
-
-
-

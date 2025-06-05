@@ -39,4 +39,3 @@ if ($result) {
 }
 header("Location: ../../dashboard.php?module=produk&page=daftar-produk");
 exit();
-?>

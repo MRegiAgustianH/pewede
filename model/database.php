@@ -1,13 +1,16 @@
 <?php
 
-class Koneksi {
+class Koneksi
+{
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conn = null;
     }
 
-    public function getConnection() {
+    public function getConnection()
+    {
         $this->conn = mysqli_connect('localhost', 'root', '', 'db_mita');
         return $this->conn;
     }

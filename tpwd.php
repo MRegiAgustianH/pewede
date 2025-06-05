@@ -1,25 +1,27 @@
 <?php
- include 'model/database.php';
- $koneksi = new Koneksi();
- $conn = $koneksi->getConnection();
- session_start();
+include 'model/database.php';
+$koneksi = new Koneksi();
+$conn = $koneksi->getConnection();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pwdmita</title>
     <link rel="stylesheet" href="mita.css">
 </head>
+
 <body>
     <?php include 'header.php'; ?>
     <div class="banner"></div>
     <div class="promo-banner">
         <div class="promo-banner-container">
-            <div class ="promo-banner-item"><img src="img/promobanner.png" alt=""></div>
-            <div class ="promo-banner-item"><img src="img/promobanneroyo.png" alt=""></div>
-            <div class ="promo-banner-item"><img src="img/promobanner1.png" alt=""></div> 
+            <div class="promo-banner-item"><img src="img/promobanner.png" alt=""></div>
+            <div class="promo-banner-item"><img src="img/promobanneroyo.png" alt=""></div>
+            <div class="promo-banner-item"><img src="img/promobanner1.png" alt=""></div>
         </div>
     </div>
     </div>
@@ -38,7 +40,7 @@
                         <form action="" method="POST">
                             <select name="" id="">
                                 <option value="">HARGA</option>
-                            <option value="">100k</option>
+                                <option value="">100k</option>
                                 <option value="">200k</option>
                                 <option value="">300k</option>
                                 <option value="">400k</option>
@@ -85,15 +87,15 @@
                     <?php
                     $query = "SELECT * FROM produk";
                     $result = mysqli_query($conn, $query);
-                    while($row = mysqli_fetch_array($result)) {
-                        echo "<a href='detail-produk.php?id=".$row['id']."'>";  
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<a href='detail-produk.php?id=" . $row['id'] . "'>";
                         echo    "<div class='item'>";
                         echo       "<div class='picture'>";
-                        echo           "<img src='admin/page/produk/images/".$row['image']."' alt='".htmlspecialchars($row['nama'])."'>";
+                        echo           "<img src='admin/page/produk/images/" . $row['image'] . "' alt='" . htmlspecialchars($row['nama']) . "'>";
                         echo       "</div>";
                         echo       "<div class='description'>";
-                        echo           "<h3>".htmlspecialchars($row['nama'])."</h3>";
-                        echo           "<p>Rp ".number_format($row['harga'], 0, ',', '.')."</p>";
+                        echo           "<h3>" . htmlspecialchars($row['nama']) . "</h3>";
+                        echo           "<p>Rp " . number_format($row['harga'], 0, ',', '.') . "</p>";
                         echo       "</div>";
                         echo    "</div>";
                         echo "</a>";
@@ -107,4 +109,5 @@
     <button class="back-to-top" title="Go to top">↑</button>
     <script src="script.js"></script>
 </body>
+
 </html>
