@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 04, 2025 at 07:13 PM
+-- Generation Time: Jun 05, 2025 at 04:02 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -58,10 +58,12 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `produk_id`, `quantity`, `created_at`) VALUES
-(1, 1, 45, 1, '2025-06-04 18:02:34'),
 (2, 1, 47, 1, '2025-06-04 18:05:25'),
-(3, 1, 46, 1, '2025-06-04 18:05:33'),
-(4, 1, 56, 1, '2025-06-04 18:05:43');
+(4, 1, 56, 1, '2025-06-04 18:05:43'),
+(5, 1, 63, 1, '2025-06-05 13:36:37'),
+(6, 1, 67, 1, '2025-06-05 13:36:58'),
+(10, 1, 59, 1, '2025-06-05 15:45:52'),
+(11, 1, 72, 1, '2025-06-05 15:45:56');
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,53 @@ INSERT INTO `fav_produk` (`id`, `user_id`, `produk_id`, `created_at`) VALUES
 (14, 11, 50, '2025-06-01 16:58:30'),
 (15, 11, 47, '2025-06-01 16:58:34'),
 (16, 1, 50, '2025-06-03 15:02:01'),
-(17, 1, 45, '2025-06-04 17:59:39');
+(18, 1, 59, '2025-06-05 14:44:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `order_date` timestamp NOT NULL,
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `order_date`, `status`) VALUES
+(1, 1, '2025-06-05 14:09:55', 'pending'),
+(2, 1, '2025-06-05 14:10:53', 'pending'),
+(3, 1, '2025-06-05 15:45:26', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int NOT NULL,
+  `order_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `quantity` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`) VALUES
+(1, 1, 45, 1),
+(2, 2, 45, 1),
+(3, 3, 46, 1),
+(4, 3, 72, 1),
+(5, 3, 59, 1);
 
 -- --------------------------------------------------------
 
@@ -119,7 +167,7 @@ INSERT INTO `produk` (`id`, `nama`, `harga`, `ukuran`, `type`, `kategori`, `desk
 (47, 'sandal', 150000, '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sandal.jpg'),
 (48, 'sandal', 50000, '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal1.jpg'),
 (49, 'sandal', 150000, '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal2.jpg'),
-(50, 'SEPATU', 1700000, '40', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu1.jpg'),
+(50, 'SEPATU', 1700000, '40', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jq8309_2_footwear_photography_side20lateral20view_grey.jpg'),
 (51, 'SEPATU', 1000000, '42', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu2.jpg'),
 (55, 'JAKET', 500000, 'M', 'jaket', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaket.jpg'),
 (56, 'JAKET', 1500000, 'XL', 'jaket', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaketpink.jpg'),
@@ -191,6 +239,21 @@ ALTER TABLE `fav_produk`
   ADD KEY `produk_id` (`produk_id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
@@ -216,13 +279,25 @@ ALTER TABLE `about`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `fav_produk`
 --
 ALTER TABLE `fav_produk`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -253,6 +328,19 @@ ALTER TABLE `cart`
 ALTER TABLE `fav_produk`
   ADD CONSTRAINT `fav_produk_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fav_produk_ibfk_2` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `produk` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
