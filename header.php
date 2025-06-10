@@ -44,7 +44,7 @@ $userData = $user->getAll();
         <div class="hamburger-content">
             <?php
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 1) {
-                echo '<a href="" class="profile-item">
+                echo '<a href="profile.php" class="profile-item">
                         <img src="img/profile.png" alt="Profile" style="width: 32px; height: 32px; border-radius: 50%; opacity:0.5;">
                         <span>' . $_SESSION['username'] . '</span>
                       </a>
