@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
 
         if (!empty($_POST['new_password'])) {
             if ($_POST['new_password'] === $_POST['confirm_password']) {
-                $data['password'] = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+                $data['password'] = $_POST['new_password'];
+                $data['confirm_password'] = $_POST['confirm_password']; 
             } else {
                 $error = "Password baru tidak cocok";
             }

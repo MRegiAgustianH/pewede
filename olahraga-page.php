@@ -10,7 +10,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk Wanita</title>
+    <title>Olahraga</title>
     <link rel="stylesheet" href="style1.css">
 </head>
 <style>
@@ -33,10 +33,10 @@ session_start();
 <body>
     <?php include('header.php') ?>
     <div class="kategori-container">
-        <h1 class="kategori-title">Produk Wanita</h1>
+        <h1 class="kategori-title">Olahraga</h1>
         <div class="produk-list">
             <?php
-            $query = "SELECT * FROM produk WHERE kategori = 'wanita'";
+            $query = "SELECT * FROM produk WHERE type = 'olahraga'";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
@@ -53,7 +53,7 @@ session_start();
                     echo "</a>";
                 }
             } else {
-                echo "<p class='empty-message' style='text-align:center'>Tidak ada produk pria tersedia</p>";
+                echo "<p class='empty-message' style='text-align:center'>Tidak ada produk olahraga tersedia</p>";
             }
             ?>
         </div>

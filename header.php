@@ -14,6 +14,9 @@ $userData = $user->getAll();
                     <a href="pria-page.php">Produk Pria</a>
                     <a href="wanita-page.php">Produk Wanita</a>
                     <a href="anak-page.php">Produk Anak</a>
+                    <a href="olahraga-page.php">Olahraga</a>
+                    <a href="brands-page.php">Brands</a>
+                    <a href="promo-page.php">Promo</a>
                 </li>
             </ul>
         </div>
@@ -50,6 +53,9 @@ $userData = $user->getAll();
                       </a>
                       <a href="favorite.php" class="menu-button">
                       Favorite
+                      </a>
+                      <a href="pesanan.php" class="menu-button">
+                      Pesanan Saya
                       </a>
                       <a href="admin/logout.php" class="menu-button"  style="background-color:#EF233C;">
                       Logout

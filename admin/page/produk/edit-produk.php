@@ -15,7 +15,8 @@ if (isset($_POST['update'])) {
         'ukuran' => $_POST['ukuran'],
         'type' => $_POST['type'],
         'kategori' => $_POST['kategori'],
-        'deskripsi' => $_POST['deskripsi']
+        'deskripsi' => $_POST['deskripsi'],
+        'promo' => $_POST['promo'] 
     ];
 
     if (!empty($_FILES['image']['name'])) {
@@ -51,34 +52,53 @@ if (isset($_POST['update'])) {
         <form method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label">Nama Produk</label>
-                <input type="text" name="nama" class="form-control" value="<?= $produk['nama'] ?>" required>
+                <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($produk['nama']) ?>" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Harga</label>
-                <input type="number" name="harga" class="form-control" value="<?= $produk['harga'] ?>" required>
+                <input type="number" name="harga" class="form-control" value="<?= htmlspecialchars($produk['harga']) ?>" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Ukuran</label>
-                <input type="text" name="ukuran" class="form-control" value="<?= $produk['ukuran'] ?>" required>
+                <input type="text" name="ukuran" class="form-control" value="<?= htmlspecialchars($produk['ukuran']) ?>" required>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Type Produk</label>
-                <input type="text" name="type" class="form-control" value="<?= $produk['type'] ?>" required>
+                <select name="type" class="form-control" required>
+                    <option value="olahraga" <?= ($produk['type'] == 'olahraga') ? 'selected' : '' ?>>Olahraga</option>
+                    <option value="brand" <?= ($produk['type'] == 'brand') ? 'selected' : '' ?>>Brand</option>
+                    <option value="original" <?= ($produk['type'] == 'original') ? 'selected' : '' ?>>Original</option>
+                </select>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Kategori</label>
-                <input type="text" name="kategori" class="form-control" value="<?= $produk['kategori'] ?>" required>
+                <select name="kategori" class="form-control" required>
+                    <option value="pria" <?= ($produk['kategori'] == 'pria') ? 'selected' : '' ?>>Pria</option>
+                    <option value="wanita" <?= ($produk['kategori'] == 'wanita') ? 'selected' : '' ?>>Wanita</option>
+                    <option value="anak" <?= ($produk['kategori'] == 'anak') ? 'selected' : '' ?>>Anak</option>
+                </select>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Deskripsi</label>
-                <!-- <input type="text" name="deskripsi" class="form-control" value="<?= $produk['deskripsi'] ?>" required> -->
-                <textarea name="deskripsi" id="deskripsi" class="form-control" required><?= $produk['deskripsi'] ?></textarea>
+                <textarea name="deskripsi" id="deskripsi" class="form-control" required><?= htmlspecialchars($produk['deskripsi']) ?></textarea>
             </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status Promo</label>
+                <select name="promo" class="form-control" required>
+                    <option value="tidak" <?= ($produk['promo'] == 'tidak') ? 'selected' : '' ?>>Tidak</option>
+                    <option value="ya" <?= ($produk['promo'] == 'ya') ? 'selected' : '' ?>>Ya</option>
+                </select>
+            </div>
+
             <div class="mb-3">
                 <label class="form-label">Gambar Saat Ini:</label><br>
-                <img src="images/<?= $produk['image'] ?>" width="100" class="mb-2">
+                <img src="images/<?= htmlspecialchars($produk['image']) ?>" width="100" class="mb-2">
                 <input type="file" name="image" class="form-control">
                 <small class="text-muted">Biarkan kosong jika tidak ingin mengubah gambar</small>
             </div>

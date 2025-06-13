@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 05, 2025 at 04:02 PM
+-- Generation Time: Jun 13, 2025 at 09:41 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `about` (
   `id` int NOT NULL,
   `deskripsi` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_a_ci;
 
 --
 -- Dumping data for table `about`
@@ -63,7 +63,8 @@ INSERT INTO `cart` (`id`, `user_id`, `produk_id`, `quantity`, `created_at`) VALU
 (5, 1, 63, 1, '2025-06-05 13:36:37'),
 (6, 1, 67, 1, '2025-06-05 13:36:58'),
 (10, 1, 59, 1, '2025-06-05 15:45:52'),
-(11, 1, 72, 1, '2025-06-05 15:45:56');
+(11, 1, 72, 1, '2025-06-05 15:45:56'),
+(12, 1, 73, 1, '2025-06-13 20:15:23');
 
 -- --------------------------------------------------------
 
@@ -112,9 +113,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `order_date`, `status`) VALUES
-(1, 1, '2025-06-05 14:09:55', 'pending'),
-(2, 1, '2025-06-05 14:10:53', 'pending'),
-(3, 1, '2025-06-05 15:45:26', 'pending');
+(1, 1, '2025-06-05 14:09:55', 'success'),
+(2, 1, '2025-06-05 14:10:53', 'success'),
+(3, 1, '2025-06-05 15:45:26', 'success');
 
 -- --------------------------------------------------------
 
@@ -150,8 +151,9 @@ CREATE TABLE `produk` (
   `id` int NOT NULL,
   `nama` varchar(255) NOT NULL,
   `harga` int NOT NULL,
+  `promo` enum('ya','tidak') NOT NULL DEFAULT 'tidak',
   `ukuran` varchar(255) NOT NULL,
-  `type` varchar(10) NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `kategori` varchar(25) NOT NULL,
   `deskripsi` text NOT NULL,
   `image` varchar(255) NOT NULL
@@ -161,31 +163,34 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `nama`, `harga`, `ukuran`, `type`, `kategori`, `deskripsi`, `image`) VALUES
-(45, 'rok', 200000, 'm', 'rok', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'rok.jpg'),
-(46, 'SAMBA', 200000, '39', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sambapink.jpg'),
-(47, 'sandal', 150000, '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sandal.jpg'),
-(48, 'sandal', 50000, '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal1.jpg'),
-(49, 'sandal', 150000, '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal2.jpg'),
-(50, 'SEPATU', 1700000, '40', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jq8309_2_footwear_photography_side20lateral20view_grey.jpg'),
-(51, 'SEPATU', 1000000, '42', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu2.jpg'),
-(55, 'JAKET', 500000, 'M', 'jaket', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaket.jpg'),
-(56, 'JAKET', 1500000, 'XL', 'jaket', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaketpink.jpg'),
-(58, 'SEPATU', 2500000, '40', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu1.jpg'),
-(59, 'TAS', 750000, 'S', 'tas', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'tas.jpg'),
-(60, 'SEPATU', 1700000, '40', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'ji0079_2_footwear_photography_side_lateral_view_grey.jpg'),
-(61, 'SEPATU', 1800000, '39', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jr7943_2_footwear_photography_side_lateral_view_grey.jpg'),
-(62, 'SEPATU', 2500000, '40', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jr2702_2_footwear_photography_side_lateral_view_grey.jpg'),
-(63, 'SEPATU', 2000000, '39', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'ih0849_2_footwear_photography_side_lateral_view_grey.jpg'),
-(64, 'SEPATU', 1600000, '41', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh7772_2_footwear_photography_side20lateral20view_grey.jpg'),
-(65, 'SEPATU', 1100000, '39', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh5393_2_footwear_photography_side20lateral20view_grey.jpg'),
-(66, 'SEPATU', 450000, '29', 'sepatu', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh9234_2_footwear_photography_side_lateral_view_grey.jpg'),
-(67, 'SEPATU', 450000, '29', 'sepatu', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh9235_2_footwear_photography_side_lateral_view_grey_1_.jpg'),
-(68, 'KAOS', 300000, 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2103_8_apparel_photography_standard_top_part_view_grey.jpg'),
-(69, 'KAOS', 300000, 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2097_8_apparel_photography_standard_top_part_view_grey.jpg'),
-(70, 'KAOS', 300000, 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2101_8_apparel_photography_standard_top_part_view_grey.jpg'),
-(71, 'BAJU SET', 360000, 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'it7273_1_apparel_photography_front_center_view_grey.jpg'),
-(72, 'BAJU SET', 420000, 'S', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2102_2_apparel_photography_front_view_grey.jpg');
+INSERT INTO `produk` (`id`, `nama`, `harga`, `promo`, `ukuran`, `type`, `kategori`, `deskripsi`, `image`) VALUES
+(45, 'rok', 200000, 'ya', 'm', 'original', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'rok.jpg'),
+(46, 'SAMBA', 200000, 'ya', '39', 'brands', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sambapink.jpg'),
+(47, 'sandal', 150000, 'tidak', '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sandal.jpg'),
+(48, 'sandal', 50000, 'tidak', '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal1.jpg'),
+(49, 'sandal', 150000, 'tidak', '39', 'sandal', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sendal2.jpg'),
+(50, 'SEPATU', 1700000, 'tidak', '40', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jq8309_2_footwear_photography_side20lateral20view_grey.jpg'),
+(51, 'SEPATU', 1000000, 'tidak', '42', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu2.jpg'),
+(55, 'JAKET', 500000, 'tidak', 'M', 'jaket', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaket.jpg'),
+(56, 'JAKET', 1500000, 'tidak', 'XL', 'jaket', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jaketpink.jpg'),
+(58, 'SEPATU', 2500000, 'tidak', '40', 'sepatu', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'sepatu1.jpg'),
+(59, 'TAS', 750000, 'tidak', 'S', 'tas', 'wanita', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'tas.jpg'),
+(60, 'SEPATU', 1700000, 'tidak', '40', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'ji0079_2_footwear_photography_side_lateral_view_grey.jpg'),
+(61, 'SEPATU', 1800000, 'tidak', '39', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jr7943_2_footwear_photography_side_lateral_view_grey.jpg'),
+(62, 'SEPATU', 2500000, 'tidak', '40', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jr2702_2_footwear_photography_side_lateral_view_grey.jpg'),
+(63, 'SEPATU', 2000000, 'tidak', '39', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'ih0849_2_footwear_photography_side_lateral_view_grey.jpg'),
+(64, 'SEPATU', 1600000, 'tidak', '41', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh7772_2_footwear_photography_side20lateral20view_grey.jpg'),
+(65, 'SEPATU', 1100000, 'tidak', '39', 'sepatu', 'pria', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh5393_2_footwear_photography_side20lateral20view_grey.jpg'),
+(66, 'SEPATU', 450000, 'tidak', '29', 'sepatu', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh9234_2_footwear_photography_side_lateral_view_grey.jpg'),
+(67, 'SEPATU', 450000, 'tidak', '29', 'sepatu', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'jh9235_2_footwear_photography_side_lateral_view_grey_1_.jpg'),
+(68, 'KAOS', 300000, 'tidak', 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2103_8_apparel_photography_standard_top_part_view_grey.jpg'),
+(69, 'KAOS', 300000, 'tidak', 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2097_8_apparel_photography_standard_top_part_view_grey.jpg'),
+(70, 'KAOS', 300000, 'tidak', 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2101_8_apparel_photography_standard_top_part_view_grey.jpg'),
+(71, 'BAJU SET', 360000, 'tidak', 'XS', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'it7273_1_apparel_photography_front_center_view_grey.jpg'),
+(72, 'BAJU SET', 420000, 'tidak', 'S', 'pakaian', 'anak', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates doloribus, tenetur rem repellat repudiandae quaerat ipsum tempore unde doloremque delectus quis culpa ex nesciunt quae optio perspiciatis magnam eos illum!', 'in2102_2_apparel_photography_front_view_grey.jpg'),
+(73, 'Jersey Anak Minecraft', 580000, 'ya', 'm', 'brands', 'anak', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi aliquam quia alias eligendi quos adipisci cupiditate illum ad tempore dignissimos accusamus animi, esse atque molestiae modi impedit rerum deleniti distinctio.', 'jerseyminecraft.jpg'),
+(74, 'ADIZERO BOSTON', 2300000, 'ya', '40', 'olahraga', 'pria', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi aliquam quia alias eligendi quos adipisci cupiditate illum ad tempore dignissimos accusamus animi, esse atque molestiae modi impedit rerum deleniti distinctio.', 'sepatuolahraga.jpg'),
+(76, 'JERSEY REAL MADRID', 2500000, 'ya', 'M', 'olahraga', 'pria', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, exercitationem rerum deserunt quidem molestiae eius consequatur distinctio quia totam nemo dolor, est dolores, laboriosam beatae quos modi facilis quisquam incidunt!', 'jerseypria.jpg');
 
 -- --------------------------------------------------------
 
@@ -207,9 +212,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `confirm_password`, `role`) VALUES
-(1, 'mita', 'mita@gmail.com', 'mita123', 'mita123\r\n', 1),
+(1, 'mita', 'mitaa@gmail.com', 'mita123', 'mita123', 1),
 (9, 'admin', 'admin@admin.com', 'admin123', 'admin123', 0),
-(10, 'maman', 'maman@gmail.com', 'maman123', 'maman123', 1),
 (11, 'mitakedua', 'mitaatsil@gmail.com', 'mita123', 'mita123', 1);
 
 --
@@ -279,7 +283,7 @@ ALTER TABLE `about`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `fav_produk`
@@ -303,13 +307,13 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

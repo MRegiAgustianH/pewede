@@ -17,6 +17,7 @@
                     <th>Type</th>
                     <th>Kategori</th>
                     <th>Deskripsi</th>
+                    <th>Promo</th>
                     <th>Gambar</th>
                     <th class="text-center">Aksi</th>
                 </tr>
@@ -38,6 +39,7 @@
                         <td><?= htmlspecialchars($row['type']); ?></td>
                         <td><?= htmlspecialchars($row['kategori']); ?></td>
                         <td><?= htmlspecialchars(substr($row['deskripsi'], 0, 10)) . (strlen($row['deskripsi']) > 10 ? '...' : ''); ?></td>
+                        <td><?= htmlspecialchars($row['promo']); ?></td>
                         <td>
                             <?php
                             $baseUrl = '/tpwdmita/admin/page/produk/images/';
@@ -97,20 +99,40 @@
                         <label for="ukuran">Ukuran</label>
                         <input type="text" class="form-control" id="ukuran" name="ukuran" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="type">Type Produk</label>
-                        <input type="text" class="form-control" id="type" name="type" required>
+                        <select class="form-control" id="type" name="type" required>
+                            <option value="" disabled selected>Pilih Tipe Produk</option>
+                            <option value="olahraga">Olahraga</option>
+                            <option value="brand">Brand</option>
+                            <option value="original">Original</option>
+                        </select>
                     </div>
+
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
-                        <input type="text" class="form-control" id="kategori" name="kategori" required>
+                        <select class="form-control" id="kategori" name="kategori" required>
+                            <option value="" disabled selected>Pilih Kategori</option>
+                            <option value="pria">Pria</option>
+                            <option value="wanita">Wanita</option>
+                            <option value="anak">Anak</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <!-- <input type="text" class="form-control" id="deskripsi" name="deskripsi" required> -->
                         <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <label for="promo">Status Promo</label>
+                        <select class="form-control" id="promo" name="promo" required>
+                            <option value="tidak">Tidak</option>
+                            <option value="ya">Ya</option>
+                        </select>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="image">Gambar Produk</label>
                         <input type="file" class="form-control" id="image" name="image" style="border:none;" required>
@@ -135,6 +157,7 @@ if (isset($_POST['tambah'])) {
         'type' => $_POST['type'],
         'kategori' => $_POST['kategori'],
         'deskripsi' => $_POST['deskripsi'],
+        'promo' => $_POST['promo'], 
         'image' => $imageName
     ];
 
@@ -144,5 +167,4 @@ if (isset($_POST['tambah'])) {
         echo "<script>window.location.href='dashboard.php?module=produk&page=daftar-produk';</script>";
     }
 }
-
 ?>
